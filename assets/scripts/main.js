@@ -77,7 +77,7 @@ $(document).ready(function() {
 });
 
 
-function doTheThings(dataArray) {
+function doTheThings(dataArray, yLabel) {
     // Mike Bostock "margin conventions"
     var margin = {
             top: 20,
@@ -122,7 +122,7 @@ function doTheThings(dataArray) {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("temperature");
+        .text(yLabel);
     // d3.tsv is a wrapper around XMLHTTPRequest, returns array of arrays (?) for a TSV file
     // type function transforms strings to numbers, dates, etc.
 
@@ -210,22 +210,26 @@ function doTheThings(dataArray) {
 
 function generateClickHandlers() {
     const $playButton = $('#play-button');
+    let yLabel;
 
     $playButton.click(() => {
         const value = $('input[name=metric]:checked', '#metricForm').val();
         let thisRay = null;
         let displayRay = null;
         if (value === 'cloud') {
+            yLabel = "Cloud Temperature";
             thisRay = cloudTempRay;
             displayRay = cloudTempSound;
         } else if (value === 'ground') {
+          yLabel = "Ground Temperature";
             thisRay = groundTempRay;
             displayRay = groundTempSound;
         } else {
+          yLabel = "Evap Rate";
             thisRay = evapRay;
             displayRay = soundEvap;
         }
-        doTheThings(displayRay);
+        doTheThings(displayRay, yLabel);
         myPlay(thisRay);
         // drumPlay(groundTempRay);
     })
@@ -281,3 +285,9 @@ function drumPlay(ray) {
     }
 
 }
+
+function conversion(k){
+  return ((9/5)*(k - 273) + 32);
+}
+
+
