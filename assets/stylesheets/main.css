@@ -7,5 +7,8 @@
   background-size:cover;
   background-position: center;
   height: 25em;
+}
 
+#piano-strings {
+  display: none;
 }
