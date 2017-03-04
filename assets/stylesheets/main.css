@@ -36,3 +36,9 @@
 .x.axis path {
   display: none;
 }
+
+
+#play-button{
+  margin-top:1em;
+  margin-bottom: 1em;
+}
