@@ -13,8 +13,6 @@ let cloudTempSound = [];
 
 $(document).ready(function() {
 
-
-
     $.get('http://localhost:3000/data')
         .then((data) => {
             for (let i = 0; i < data.entries.length; i++) {
@@ -46,7 +44,7 @@ $(document).ready(function() {
                     groundTempNum = parseInt((((data.entries[i].groundTemp) - data.groundTempMin) / (data.groundTempMax - data.groundTempMin)) * 88);
                     groundTempSoundObj = {
                         letter: i,
-                        frequency: data.entries[i].groundTemp
+                        frequency: conversion(data.entries[i].groundTemp)
                     };
                 }
 
@@ -289,5 +287,3 @@ function drumPlay(ray) {
 function conversion(k){
   return ((9/5)*(k - 273) + 32);
 }
-
-
