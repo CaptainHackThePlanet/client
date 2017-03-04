@@ -16,3 +16,5 @@ var test = [
     frequency: 309.80999755859375
   }
 ]
+
+var timeoutTime = 400;
