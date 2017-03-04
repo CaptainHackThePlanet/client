@@ -13,7 +13,7 @@ let cloudTempSound = [];
 
 $(document).ready(function() {
 
-    $.get('http://localhost:3000/data')
+    $.get('https://captain-hack-the-planet.herokuapp.com/data')
         .then((data) => {
             for (let i = 0; i < data.entries.length; i++) {
                 let evapNum = parseInt((((data.entries[i].evapRate) - data.evapRateMin) / (data.evapRateMax - data.evapRateMin)) * 88);
