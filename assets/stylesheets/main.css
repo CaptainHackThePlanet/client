@@ -1,0 +1,11 @@
+.navbar{
+  margin-bottom: 0;
+}
+
+.jumbotron{
+  background-image: url("../images/bg.jpg");
+  background-size:cover;
+  background-position: center;
+  height: 25em;
+
+}
