@@ -7,7 +7,10 @@
   background-size:cover;
   background-position: center;
   height: 25em;
+}
 
+#piano-strings {
+  display: none;
 }
 
 
@@ -32,4 +35,10 @@
 
 .x.axis path {
   display: none;
+}
+
+
+#play-button{
+  margin-top:1em;
+  margin-bottom: 1em;
 }
