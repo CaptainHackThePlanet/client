@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 
 
-function doTheThings(dataArray) {
+function doTheThings(dataArray, yLabel) {
     // Mike Bostock "margin conventions"
     var margin = {
             top: 20,
@@ -52,7 +52,7 @@ function doTheThings(dataArray) {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("temperature");
+        .text(yLabel);
     // d3.tsv is a wrapper around XMLHTTPRequest, returns array of arrays (?) for a TSV file
     // type function transforms strings to numbers, dates, etc.
 
@@ -140,22 +140,26 @@ function doTheThings(dataArray) {
 
 function generateClickHandlers() {
     const $playButton = $('#play-button');
+    let yLabel;
 
     $playButton.click(() => {
         const value = $('input[name=metric]:checked', '#metricForm').val();
         let thisRay = null;
         let displayRay = null;
         if (value === 'cloud') {
+            yLabel = "Cloud Temperature";
             thisRay = cloudTempRay;
             displayRay = cloudTempSound;
         } else if (value === 'ground') {
+          yLabel = "Ground Temperature";
             thisRay = groundTempRay;
             displayRay = groundTempSound;
         } else {
+          yLabel = "Evap Rate";
             thisRay = evapRay;
             displayRay = soundEvap;
         }
-        doTheThings(displayRay);
+        doTheThings(displayRay, yLabel);
         myPlay(thisRay);
         // drumPlay(groundTempRay);
     })
@@ -673,10 +677,10 @@ for (let i = 0; i < data.entries.length; i++) {
     }
 
     let groundTempNum = 1;
-    let groundTempSoundObj = { letter: i, frequency: 200};
+    let groundTempSoundObj = { letter: i, frequency: conversion(200)};
     if (data.entries[i].groundTemp) {
         groundTempNum = parseInt((((data.entries[i].groundTemp) - data.groundTempMin) / (data.groundTempMax - data.groundTempMin)) * 88);
-        groundTempSoundObj = {letter: i, frequency: data.entries[i].groundTemp};
+        groundTempSoundObj = {letter: i, frequency: conversion(data.entries[i].groundTemp)};
     }
 
     evapRay.push(evapNum);
@@ -687,4 +691,7 @@ for (let i = 0; i < data.entries.length; i++) {
     cloudTempSound.push(cloudObj);
 }
 
+function conversion(k){
+  return ((9/5)*(k - 273) + 32);
+}
 console.log(groundTempSound);
