@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 
 
-function doTheThings() {
+function doTheThings(dataArray) {
     // Mike Bostock "margin conventions"
     var margin = {
             top: 20,
@@ -71,7 +71,7 @@ function doTheThings() {
             frequency: 309.80999755859375
         }]
         // d3.tsv(test, type, function(error, data) {
-    replay(cloudTempSound);
+    replay(dataArray);
     // });
     function type(d) {
         // + coerces to a Number from a String (or anything)
@@ -144,15 +144,18 @@ function generateClickHandlers() {
     $playButton.click(() => {
         const value = $('input[name=metric]:checked', '#metricForm').val();
         let thisRay = null;
+        let displayRay = null;
         if (value === 'cloud') {
             thisRay = cloudTempRay;
+            displayRay = cloudTempSound;
         } else if (value === 'ground') {
             thisRay = groundTempRay;
+            displayRay = groundTempSound;
         } else {
             thisRay = evapRay;
+            displayRay = soundEvap;
         }
-        
-        doTheThings();
+        doTheThings(displayRay);
         myPlay(thisRay);
         // drumPlay(groundTempRay);
     })
