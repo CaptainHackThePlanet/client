@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" href="#">Brand</a>
+                <a class="navbar-brand" href="#">Captain Hack the Planet</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,10 +31,13 @@
     <div class="main">
         <div class="jumbotron">
             <div class="container">
-                <h1>test</h1>
             </div>
         </div>
+      <h2 id="please-wait-h2" class="text-center">Please wait: Loading lots of weather data :)</h2>
         <div class="container">
+          <div id="dataContainer" class="container">
+
+          </div>
             <form id="metricForm">
                 <input type="radio" name="metric" value="cloud"> Cloud Top Temperature
               <br />
@@ -42,7 +45,7 @@
               <br />
                 <input type="radio" name="metric" value="evap "> Evaporation Rate
             </form>
-            <a id="play-button" class="btn btn-default">Play!</a>
+            <a id="play-button" class="btn btn-default" >Play!</a>
         </div>
     </div>
     <div id="piano-strings">
@@ -436,6 +439,7 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="./assets/scripts/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js" charset="utf-8"></script>
     <script src="./assets/scripts/global.js" charset="utf-8"></script>
     <script src="./assets/scripts/main.js" charset="utf-8"></script>
     <!-- <script src="./assets/scripts/helpers.js" charset="utf-8"></script> -->
