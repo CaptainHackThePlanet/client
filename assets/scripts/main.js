@@ -85,7 +85,7 @@ function doTheThings() {
             slices.push(data.slice(0, i + 1));
         }
         slices.forEach(function(slice, index) {
-            console.log(slice);
+            // console.log(slice);
             setTimeout(function() {
                 draw(slice);
             }, index * 300);
@@ -140,9 +140,20 @@ function doTheThings() {
 
 function generateClickHandlers() {
     const $playButton = $('#play-button');
+
     $playButton.click(() => {
+        const value = $('input[name=metric]:checked', '#metricForm').val();
+        let thisRay = null;
+        if (value === 'cloud') {
+            thisRay = cloudTempRay;
+        } else if (value === 'ground') {
+            thisRay = groundTempRay;
+        } else {
+            thisRay = evapRay;
+        }
+        
         doTheThings();
-        myPlay(groundTempRay);
+        myPlay(thisRay);
         // drumPlay(groundTempRay);
     })
 }
@@ -180,7 +191,7 @@ function drumPlay(ray) {
         }
 
         ray[i] = (ray[i] % 11) + 1;
-        console.log(ray[i]);
+        // console.log(ray[i]);
 
         let idStr = `#d${ray[i]}`;
         let note = $(idStr)[0];
