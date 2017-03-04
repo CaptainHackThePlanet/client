@@ -71,7 +71,7 @@ function doTheThings() {
             frequency: 309.80999755859375
         }]
         // d3.tsv(test, type, function(error, data) {
-    replay(test);
+    replay(cloudTempSound);
     // });
     function type(d) {
         // + coerces to a Number from a String (or anything)
@@ -88,7 +88,7 @@ function doTheThings() {
             console.log(slice);
             setTimeout(function() {
                 draw(slice);
-            }, index * 300);
+            }, index * timeoutTime);
         });
     }
 
@@ -165,7 +165,7 @@ function myPlay(ray) {
                 note.play();
             }
 
-        }, i * 400);
+        }, i * timeoutTime);
     }
 
 }
@@ -193,7 +193,7 @@ function drumPlay(ray) {
                 note.play();
             }
 
-        }, i * 400);
+        }, i * timeoutTime);
     }
 
 }
@@ -643,21 +643,34 @@ let data = {
 let evapRay = [];
 let cloudTempRay = [];
 let groundTempRay = [];
+let soundEvap = [];
+let groundTempSound = [];
+let cloudTempSound = [];
 
 for (let i = 0; i < data.entries.length; i++) {
     let evapNum = parseInt((((data.entries[i].evapRate) - data.evapRateMin) / (data.evapRateMax - data.evapRateMin)) * 88);
+    let evapObj = {letter: i, frequency: data.entries[i].evapRate};
 
     let cloudTempNum = 1;
+    let cloudObj = {letter: i, frequency: data.cloudTempMin};
     if (data.entries[i].cloudTopTemp) {
         cloudTempNum = parseInt((((data.entries[i].cloudTopTemp) - data.cloudTempMin) / (data.cloudTempMax - data.cloudTempMin)) * 88);
+        cloudObj = {letter: i, frequency: data.entries[i].cloudTopTemp};
     }
 
     let groundTempNum = 1;
+    let groundTempSoundObj = { letter: i, frequency: 200};
     if (data.entries[i].groundTemp) {
         groundTempNum = parseInt((((data.entries[i].groundTemp) - data.groundTempMin) / (data.groundTempMax - data.groundTempMin)) * 88);
+        groundTempSoundObj = {letter: i, frequency: data.entries[i].groundTemp};
     }
 
     evapRay.push(evapNum);
     cloudTempRay.push(cloudTempNum);
     groundTempRay.push(groundTempNum);
+    soundEvap.push(evapObj);
+    groundTempSound.push(groundTempSoundObj);
+    cloudTempSound.push(cloudObj);
 }
+
+console.log(groundTempSound);
